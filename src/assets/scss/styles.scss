@@ -1,0 +1,662 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+
+@font-face {
+    font-family: 'TTFirsNeue';
+    src: local('TTFirsNeue-Bold'),
+        url('../fonts/TTFirsNeue-Bold.woff2') format('woff2'),
+        url('../fonts/TTFirsNeue-Bold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TTFirsNeue';
+    src: local('TTFirsNeue-Medium'),
+        url('../fonts/TTFirsNeue-Medium.woff2') format('woff2'),
+        url('../fonts/TTFirsNeue-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TTFirsNeue';
+    src: local('TTFirsNeue-Regular'),
+        url('../fonts/TTFirsNeue-Regular.woff2') format('woff2'),
+        url('../fonts/TTFirsNeue-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'TTFirsNeue', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: $blackColor;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+.container {
+    @include container;
+}
+
+.title {
+    @include title;
+}
+
+.btn {
+    @include orangeBtn;
+    transition: background-color .2s ease, color .2s ease, outline .2s ease;
+    &:focus-visible {
+        outline:3px solid $activeColor;
+    }
+
+    &:hover {
+        background-color: $focusColor;
+    }
+
+    &:active {
+        background-color: $activeColor;
+    }
+}
+
+.header,
+.about,
+.footer {
+    background-color: $blackColor;
+}
+
+.input {
+    &:hover::placeholder {
+        transition: color .3s ease;
+        color: $hoverColor;
+    }
+    &:focus-visible {
+        outline: 1px solid $focusColor;
+        &::placeholder {
+            color: $grayColor;
+        }
+    }
+
+    &:active {
+        outline: none;
+    }
+}
+
+.header {
+    padding: 24px 0;
+    color: $whiteColor;
+    &__flex {
+        align-items: center;
+    }
+    &__logo {
+        display: inline-block;
+        margin-right: 139px;
+        & img {
+            object-fit: contain;
+        }
+    }
+    &__item__link {
+        @include fontTTFirs;
+        transition: color .2s ease;
+        &:focus-visible {
+            outline: none;
+            background-color: $focusColor;
+        }
+        &:hover {
+            color: $hoverColor;
+        }
+        &:active {
+            color: $activeColor;
+        }
+    }
+    &__item:not(:last-child) {
+        margin-right: 79px;
+    }
+
+    &__burger-btn,
+    &__nav__burger-close {
+        display: none;
+    }
+
+    &__btn,
+    &__burger-btn,
+    &__nav__burger-close {
+        &:focus-visible {
+            outline: none;
+        }
+        &:focus-visible svg [fill] {
+            fill: $focusColor;
+        }
+        & svg [fill] {
+            transition: fill .25s ease;
+        }
+
+        &:hover svg [fill] {
+        fill: $hoverColor;
+        } 
+
+        &:active svg [fill] {
+            fill: $activeColor;
+        }
+    }
+    
+    &__search {
+        position: relative;
+        margin-left: auto;
+        &--string {
+            display: none;
+            background-color: $blackColor;
+            position: absolute;
+            right: 0;
+            top: 0;
+            & > button:hover > svg  {
+                opacity: .5;
+                transition: opacity .3s ease;
+            }
+            &__input {
+                @include fontTTFirs;
+                width: 308px;
+                margin-right: 9px;
+                line-height: 21px;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid #E9E9E9;
+                &::placeholder {
+                    color: #E9E9E9;
+                }
+            }
+
+        }
+
+    }
+}
+
+
+.works {
+    padding-top: 34px;
+    padding-bottom: 68px;
+}
+
+.works-grid {
+    max-width: 1290px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 343px 257px;
+    gap: 30px;
+
+    &__item {
+        position: relative;
+    }
+
+    &__item1 {
+        grid-row: 1/3;
+        grid-column: 1/3;
+
+        @include label;
+        &::after {
+            content: '#мастеркласс';
+            top: 15px;
+            right: 15px;
+        }
+
+        &__text {
+            position: absolute;
+            bottom: 60px;
+            left: 60px;
+            right: 30px;
+            color: $whiteColor;
+
+            & > h3 {
+                @include fontTTFirs;
+                margin-top: 4px;
+                margin-bottom: 19px;
+                font-size: 36px;
+                line-height: 100%;
+            }
+        }
+    }
+
+    &__item2 {
+        flex-direction: column;
+        overflow: hidden;
+        font-size: 0;
+        justify-content: space-between;
+        grid-column: 3/5;
+
+        & img {
+            height: 300px;
+        }
+
+    }
+}
+
+.about {
+    padding-top: 30px;
+    padding-bottom: 58px;
+    color: $whiteColor;
+
+    &__validate {
+        position: relative;
+        gap: 30px;
+        margin-top: 16px;
+    }
+
+    &__title {
+        margin-bottom: 5px;
+        color: $whiteColor;
+    }
+
+    &__flex {
+        gap: 30px;
+
+        &__left {
+        max-width: 49%;
+        line-height: 28px;
+        color: $grayColor;
+        }
+
+        &__right {
+            & img {
+                margin-bottom: 25px;
+                height: 60%;
+            }
+            &>label {
+                @include fontTTFirs;
+                font-size: 24px;
+            }
+
+            & input {
+                max-width: 474px;
+                width: 100%;
+                @include input;
+                background-color: #4A4A4A;
+                color: $whiteColor;
+                &::placeholder {
+                    color: $grayColor;
+                }
+                
+            }
+        } 
+}
+}
+
+.projects {
+    padding-top: 68px;
+    &__title {
+    margin-bottom: 12px;
+}}
+
+.proj__btn {
+    &:focus-visible {
+        background-color: $focusColor;
+    }
+
+    &:hover {
+        background-color: $hoverColor;
+    }
+    &:active {
+        background-color: $activeColor;
+    }
+}
+
+.projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2,300px);
+    gap: 30px;
+    &__item {
+        position: relative;
+        @include label;
+        
+        &__wrapper {
+            max-width: 292px;
+            position: absolute;
+            top: 22px;
+            left: 29px;
+            bottom: 30px;
+            color: $whiteColor;
+
+            & span {
+                @include dateProj;
+            }
+
+            & h3 {
+                @include fontTTFirs;
+                margin-bottom: 6px;
+                font-size: 24px;
+            }
+
+            & p {
+                line-height: 22px;
+            }
+
+            & button {
+                position: absolute;
+                bottom: 0;
+                background-color: transparent;
+                border: 3px solid $orangeColor;
+            }
+        }
+    }
+
+    &__item1,
+    &__item3 {
+        grid-column: 1 / 3;
+    }
+
+    &__item2 {
+        grid-column: 3/5;
+        &::after {
+            content: '#fuji';
+        }
+    }
+    &__item3 {
+        &::after {
+            content: '#проектзабвение';
+        }
+    }
+
+    &__item4 {
+        &::after {
+            content: '#ретушь';
+        }
+    }
+
+    &__item3 p,
+    &__item4 p {
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__item5 {
+        &::after {
+            content: '#портрет';
+        }
+    } 
+}
+
+.proj-span {
+    @include dateProj;
+    filter: contrast(.5);
+    position: absolute;
+    bottom: 0;
+}
+
+.proj-min-img {
+    height: 184px;
+    margin-bottom: 18px;
+}
+
+.proj-inner-grid {
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+    gap: 30px;
+
+    &__item {
+        position: relative;
+        @include label;
+        
+        &:nth-child(1)::after {
+                content: '#пейзаж';
+            }
+
+        &:nth-child(2)::after {
+            content: '#портрет';
+        }
+        &:nth-child(3)::after {
+            content: '#предмет';
+        }
+
+        & p {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 132%;
+        }
+    }
+}
+
+.contacts {
+    padding-top: 68px;
+    padding-bottom: 69px;
+    
+    &__flex {
+        gap: 30px;
+    }
+
+    &__title {
+        margin-bottom: 22px;
+    }
+
+    &__form {
+        max-width: 410px;
+        flex-direction: column;
+
+        &--relative {
+            position: relative;
+        }
+
+        &--relative > textarea {
+            height: 138px;
+        }
+
+        & label {
+            @include title;
+            margin-bottom: 5px;
+        }
+
+        & p {
+            margin-bottom: 14px;
+            line-height: 22px;
+            color: #999999;
+        }
+
+        & input,
+        & textarea {
+            @include input;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        & button {
+            width: fit-content;
+            margin-top: auto;
+        }
+
+    }
+}
+
+.js-validate-error-field {
+    position: relative;
+}
+
+.js-validate-error-label {
+    position: absolute;
+    top: 3px;
+    left: 23px;
+    font-size: 9px;
+    color: #FF3030 !important;
+}
+
+
+[class*="ground-pane"] {
+    filter: grayscale(1);
+}
+
+.ymaps-2-1-79-controls-pane *, .ymaps-2-1-79-searchpanel-pane *,
+.ymaps-2-1-79-map-copyrights-promo,
+.ymaps-2-1-79-copyright__agreement {
+    display: none;
+}
+
+#map {
+    position: relative;
+    max-width: 850px;
+    min-width: 590px;
+    width: 100%;
+}
+
+.map {
+    &__text {
+        width: 410px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        background: rgba(32, 32, 32, 0.85);
+    }
+
+    &__address {
+        max-width: 335px;
+        padding-top: 175px;
+        padding-left: 60px;
+        font-size: 16px;
+        line-height: 28px;
+        font-style: normal;
+        color: $grayColor;
+        
+        & > span {
+            @include fontTTFirs;
+            display: block;
+            font-size: 24px;
+            line-height: 30px;
+            color: $whiteColor;
+        }
+    }
+
+    &__tel {
+        @include fontTTFirs;
+        display: block;
+        width: fit-content;
+        padding-left: 18px;
+        background-image: url(../images/svg/map-tel.svg);
+        background-repeat: no-repeat;
+        background-position: left center;
+        color: $orangeColor;
+        transition: color .2s ease;
+        &:focus-visible {
+            color: $hoverColor;
+        }
+        &:hover {
+            color: $focusColor;
+        }
+        &:active {
+            color: $activeColor;
+        }
+    }
+}
+
+.footer-flex {
+    padding-top: 24px;
+    padding-bottom: 16px;
+    color: $grayColor;
+
+    &__left {
+        max-width: 270px;
+
+        &__logo {
+            display: block;
+            margin-bottom: 7px;
+            width: 190px;
+            height: 30px;
+
+            & img {
+                object-fit: contain;
+            }
+
+            & ~ p {
+                @include fontTTFirs;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &__center {
+        max-width: 365px;
+        margin-left: 177px;
+    }
+
+    &__right {
+        max-width: 170px;
+        margin-left: auto;
+
+        &__list {
+            margin-top: 8px;
+            justify-content: center;
+            gap: 20px;
+        }
+        &__item {
+            & a:focus-visible {
+                outline: none;
+            }
+            & a:focus-visible svg [fill] {
+                fill: $focusColor;
+            }
+            & a svg [fill] {
+                transition: fill .25s ease;
+            }
+
+            & a:hover svg [fill] {
+            fill: $hoverColor;
+            } 
+
+            & a:active svg [fill] {
+                fill: $activeColor;
+            }
+    }
+        
+    }
+}
+
+@import '_media.scss';

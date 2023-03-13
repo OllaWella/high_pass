@@ -1,0 +1,67 @@
+@mixin container {
+    max-width: 1352px;
+    padding: 0 31px;
+    margin: 0 auto;
+}
+
+@mixin title {
+    font-family: 'TTFirsNeue';
+    font-size: 24px;
+    color: $blackColor;
+}
+
+@mixin dateProj {
+    padding-left: 17px;
+    font-size: 12px;
+    line-height: 24px;
+    background-image: url(../images/svg/project-calendar.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+@mixin label {
+    &::after {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        padding: 6px 14px;
+        font-size: 14px;
+        line-height: 16px;
+        color: $whiteColor;
+        background-color: $blackColor;
+        @media (max-width: 600px){
+            top: 5px;
+            right: 5px;
+        }
+    }
+
+}
+
+@mixin orangeBtn {
+    font-family: 'Roboto';
+    padding: 15px 22px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: $whiteColor;
+    background-color: $orangeColor;
+}
+
+@mixin fontTTFirs {
+    font-family: 'TTFirsNeue';
+}
+
+@mixin input {
+    padding: 15px 23px 16px;
+    background-color: #E9E9E9;
+    border: none;
+    font-size: 16px;
+    &::placeholder {
+        color: #999999;
+    }
+
+    @media (max-width: 600px){
+        padding: 12px 23px;
+        font-size: 14px;
+    }
+}
